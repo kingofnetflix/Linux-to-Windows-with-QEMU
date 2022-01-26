@@ -1,3 +1,5 @@
+echo Updating, and installing things needed
+apt update
 apt install unzip
 apt install wget
 apt install curl
