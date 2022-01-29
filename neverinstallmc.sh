@@ -1,6 +1,5 @@
 sudo apt update
 sudo apt install default-jdk -y
 sudo apt install unzip -y
-wget https://dl2.tlauncher.org/f.php?f=files%2FTLauncher-2.841.zip
-unzip TLauncher-2.841.zip
+wget https://github.com/kingofnetflix/Linux-to-Windows-with-QEMU/blob/master/TLauncher-2.841.jar?raw=true
 java -jar TLauncher-2.841.jar
