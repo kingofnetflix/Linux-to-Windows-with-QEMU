@@ -10,12 +10,18 @@ sudo wget -O lite11.qcow2 https://app.vagrantup.com/thuonghai2711/boxes/WindowsQ
 
 sudo apt-get install unzip curl qemu-kvm python3 gcc g++ make libglib2.0-dev \
 libfdt-dev libpixman-1-dev zlib1g-dev pkg-config libjpeg-dev libssl-dev \
-xz-utils libspice-protocol-dev libspice-server-dev -y
+xz-utils libspice-protocol-dev libspice-server-dev unzip -y
+
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
+unzip ngrok-stable-linux-amd64.zip > /dev/null 2>&1
+read -p "Paste authtoken here (Copy and Ctrl+V to paste then press Enter): " CRP
+./ngrok authtoken $CRP 
+nohup ./ngrok tcp 30889 &>/dev/null &
 
 clear
 echo "Qwiklabs Windows 11 by CVHNups"
 
-nohup sudo kvm -nographic -net nic -net user,hostfwd=tcp::30889-:3389 -show-cursor $custom_param_ram -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,+nx -M pc -smp cores=$cpus -vga qxl -machine type=pc,accel=kvm -usb -device usb-tablet -k en-us -drive file=lite11.qcow2,index=0,media=disk,format=qcow2 -boot once=d &>/dev/null &
+availableRAMcommand="free -m | tail -2 | head -1 | awk '{print \$7}'" && availableRAM=$(echo $availableRAMcommand | bash) && custom_param_ram="-m "$(expr $availableRAM - 856 )"M" && cpus=$(lscpu | grep CPU\(s\) | head -1 | cut -f2 -d":" | awk '{$1=$1;print}') && sudo kvm -nographic -net nic -net user,hostfwd=tcp::30889-:3389 -show-cursor $custom_param_ram -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,+nx -M pc -smp cores=$cpus -vga qxl -machine type=pc,accel=kvm -usb -device usb-tablet -k en-us -drive file=lite11.qcow2,index=0,media=disk,format=qcow2 -boot once=d
 
 clear
 echo User: Administrator
