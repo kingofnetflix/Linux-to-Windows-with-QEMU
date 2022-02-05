@@ -6,7 +6,7 @@ custom_param_ram="-m "$(expr $availableRAM - 856 )"M"
 cpus=$(lscpu | grep CPU\(s\) | head -1 | cut -f2 -d":" | awk '{$1=$1;print}')
 
 
-sudo wget -O lite11.qcow2 https://app.vagrantup.com/thuonghai2711/boxes/WindowsQCOW2/versions/1.0.9/providers/qemu.box
+sudo wget -O lite11.qcow2 https://app.vagrantup.com/thuonghai2711/boxes/WindowsQCOW2/versions/1.0.2/providers/qemu.box
 
 sudo apt-get install unzip curl qemu-kvm python3 gcc g++ make libglib2.0-dev \
 libfdt-dev libpixman-1-dev zlib1g-dev pkg-config libjpeg-dev libssl-dev \
