@@ -1,4 +1,4 @@
-java -Xmx512M -Xms128M -jar ~/eaglercraft/java/bungee_command/bungee-dist.jar
+java -Xmx512M -Xms128M -jar ~/eaglercraft/java/bungee_command/bungee-dist.jar > /dev/null 2>&1
 
 cd ~/eaglercraft/java/bukkit_command/
 
